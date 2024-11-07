@@ -16,8 +16,9 @@
                 @forelse ($projects as $project)
                     <div style="width: 18rem;">
                         <div class="card-body text-center">
-                            <h1 class="card-text">{{ $project->name }}</h1>
-                            <h3 class="card-text">Tipo: {{ $project->type->name }}</h3>
+                            <h1 class="card-text fw-semibold">{{ $project->name }}</h1>
+                            <hr>
+                            <h3 class="card-text">{{ $project->type->name }}</h3>
                             <a class="card-text" href="{{ $project->link }}">
                                 <h5 class="my-3">Vai al progetto</h5>
                             </a>
