@@ -16,6 +16,10 @@
                 @forelse ($projects as $project)
                     <div style="width: 18rem;">
                         <div class="card-body text-center">
+                            @forelse ($project->technologies as $technology)
+                                <div><span>{{ $technology->name }}</span></div>
+                            @empty
+                            @endforelse
                             <h1 class="card-text fw-semibold">{{ $project->name }}</h1>
                             <hr>
                             <h3 class="card-text">{{ $project->type->name }}</h3>
