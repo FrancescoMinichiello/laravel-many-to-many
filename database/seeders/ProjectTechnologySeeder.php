@@ -18,7 +18,7 @@ class ProjectTechnologySeeder extends Seeder
         $technologies = Technology::all()->pluck("id");
 
         foreach ($projects as $project) {
-            $project->technologies()->sync(1);
+            $project->technologies()->sync(2);
         }
     }
 }
