@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class project extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        "name",
+        "link",
+        "types_id"
+    ];
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
 }
