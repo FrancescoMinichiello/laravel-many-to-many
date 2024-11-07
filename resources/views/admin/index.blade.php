@@ -3,8 +3,8 @@
 @section('page-title', 'Projects')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
+    <div class="container ">
+        <div class="row d-flex justify-content-center">
             <div class="col-4 mb-5">
                 <a href="{{ route('admin.create') }}" class="fs-3 btn btn-success m-3 d-flex justify-content-center">
                     Crea un nuovo Progetto
@@ -12,9 +12,8 @@
             </div>
         </div>
         <div class="row mb-2 d-flex justify-content-center ">
-            @forelse ($projects as $project)
-                <div class="col">
-
+            <div class="col d-flex justify-content-center gap-5">
+                @forelse ($projects as $project)
                     <div style="width: 18rem;">
                         <div class="card-body text-center">
                             <h1 class="card-text">{{ $project->name }}</h1>
@@ -39,9 +38,9 @@
 
 
                     </div>
-                </div>
-            @empty
-            @endforelse
+                @empty
+                @endforelse
+            </div>
         </div>
     </div>
 @endsection
