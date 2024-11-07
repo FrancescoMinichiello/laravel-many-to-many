@@ -3,70 +3,51 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Type;
 use App\Models\Project;
 use Illuminate\Http\Request;
-use SebastianBergmann\CodeCoverage\Report\Xml\Project as XmlProject;
 
 class ProjectController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    //
+    public function __construct()
+    {
+        $this->middleware("auth");
+    }
+
     public function index()
     {
+
         $projects = Project::all();
-        return view("admin.projects.index", compact("projects"));
+        return view("admin.index", compact("projects"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view("admin.projects.create");
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        $data = $request->validate();
-
-        $project = Project::create();
-        return redirect()->route("admin.projects.index");
-    }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         $project = Project::findOrFail($id);
-        return view("admin.projects.show", compact("project"));
+        return view("admin.show", compact("project"));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function store(Request $request)
     {
-        //
+        $formData = $request->all();
+
+        $project = Project::create($formData);
+
+        return redirect()->route("admin.index");
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function create()
     {
-        //
+        $project = new Project();
+        $types = Type::all();
+
+        return view("admin.create", compact("types", "project"));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect()->route('admin.index');
     }
 }
