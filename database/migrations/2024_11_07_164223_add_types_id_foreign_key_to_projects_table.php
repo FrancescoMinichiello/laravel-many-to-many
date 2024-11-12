@@ -24,8 +24,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->dropForeign('projects_type_id_foreign'); // Usa il nome esatto della chiave esterna
-            $table->dropColumn('type_id'); // Se vuoi rimuovere anche la colonna
+            $table->dropForeign('projects_type_id_foreign');
+            $table->dropColumn('type_id');
         });
     }
 };
